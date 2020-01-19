@@ -1,0 +1,103 @@
+<div class="panel panel-danger">
+    <div class="panel-header">
+        Reactive Forms
+    </div>
+    <div class="panel-body">
+        <form [formGroup]="employeeForm">
+            <div class="form-group"
+             [ngClass]="{'has-error':(!employeeForm.get('firstName').valid)}">
+                <label class="control-label col-md-2" for="fname">
+                    First Name
+                </label>
+                <div class="col-md-10">
+                    <input type="text" id="fname" name="fname" class="form-control" 
+                    formControlName="firstName"/>
+                    <span class="help-block" *ngIf="(employeeForm.get('firstName').errors)">
+                        <span *ngIf="(employeeForm.get('firstName').errors.required)">
+                            First Name is required
+                        </span>
+                        <span *ngIf="(employeeForm.get('firstName').errors.minlength)">
+                            First Name min length is 3
+                        </span>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="form-group" [ngClass]="{'has-error':(!employeeForm.get('email').valid)}">
+                <label class="control-label col-md-2" for="email">
+                    Email
+                </label>
+                <div class="col-md-10 ">
+                    <input type="email" id="email" name="email" class="form-control" formControlName="email" />
+                    <span class="help-block" *ngIf="(employeeForm.get('email').errors)">
+                        <span *ngIf="employeeForm.get('email').errors.required">
+                            Email is required
+                        </span>
+                        <span *ngIf="employeeForm.get('email').errors.pattern">
+                            Enter valid email
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{'has-error':(!employeeForm.get('phone').valid)}">
+                <label class="contol-label col-md-2" for="phone">
+                    Phone
+                </label>
+                <div class="col-md-10">
+                    <input type="phone" id="phone" name="phone" class="form-control"
+                        formControlName="phone" />
+                    <span class="help-block" *ngIf="(employeeForm.get('phone').errors)">
+                        <span *ngIf="(employeeForm.get('phone').errors.required)">
+                            phone is required
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{'has-error':(!employeeForm.get('rating').valid)}">
+                <label class="contol-label col-md-2" for="rating">
+                    Rating
+                </label>
+                <div class="col-md-10">
+                    <input type="text" id="rating" name="rating" class="form-control"
+                        formControlName="rating" />
+                    <span class="help-block" *ngIf="(employeeForm.get('rating').errors)">
+                        <span *ngIf="(employeeForm.get('rating').errors.required)">
+                            Rating is required
+                        </span>
+                        <span *ngIf="(employeeForm.get('rating').errors.range)">
+                            Rating should be between 1 to 5
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2">
+                    Notification
+                </label>
+                <div class="col-md-10">
+                    <label class="radio-inline">
+                        <input type="radio" value="phone" formControlName="notification"
+                        (click)="setNotification('phone')" /> Phone
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="email" formControlName="notification"
+                        (click)="setNotification('email')" /> Email
+                    </label>
+                </div>
+            </div>
+
+            
+
+            <div class="form-group">
+                <div class="col-md-4 col-offset-2">
+                    <button type="submit" class="btn btn-success" [disabled]="(!employeeForm.valid)">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
